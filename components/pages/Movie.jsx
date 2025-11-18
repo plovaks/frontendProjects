@@ -41,26 +41,23 @@ export default function Movie(){
     return (
         <div className="movie__page">
            <Link to="/films"><button className="movie__pageBackBtn" >К списку фильмов</button></Link> 
-                <div className="movie__pageBlock">
-            
-            <img src={movieData.poster?.url} alt="movie poster" className="movie__pageImage"/>
-            
-            <div className="movie__pageInfo">
-
-                <h3 className="movie__pageTitle">{movieData.name}</h3>
-                <div className="movie__pageGenre">
-                    <span>Жанр:  </span>
-                        {movieData.genres?.[0]?.name}
-                </div>
-                <div className="movie__pageCountry"> <span>Страна:</span> {movieData.countries && movieData.countries[0].name}</div>
-                <div className="movie__pageYear">
-                    <span>Год выпуска:  </span>
-                    {movieData.year}
-                </div>
-                <p className="movie__pageAge"><span>Возрастное органичение:  </span> {movieData.ageRating ? movieData.rating :18}+</p>
-                <div className="movie__pageDesc"><span>Сюжет:  </span> {movieData.description}</div>
-                <p className="movie__pageRating"><span>Рейтинг Кинопоиска:  </span> {movieData.rating? parseFloat((movieData.rating.kp).toFixed(1)) : 5}</p>
-                <div className="movie__pageActors">
+            <div className="movie__pageBlock">
+                <img src={movieData.poster?.url} alt="movie poster" className="movie__pageImage"/>
+                <div className="movie__pageInfo">
+                    <h3 className="movie__pageTitle">{movieData.name}</h3>
+                    <div className="movie__pageGenre">
+                        <span>Жанр:  </span>
+                            {movieData.genres?.[0]?.name}
+                    </div>
+                    <div className="movie__pageCountry"> <span>Страна:</span> {movieData.countries && movieData.countries[0].name}</div>
+                    <div className="movie__pageYear">
+                        <span>Год выпуска:  </span>
+                        {movieData.year}
+                    </div>
+                    <p className="movie__pageAge"><span>Возрастное органичение:  </span> {movieData.ageRating ? movieData.ageRating :18}+</p>
+                    <div className="movie__pageDesc"><span>Сюжет:  </span> {movieData.description}</div>
+                    <p className="movie__pageRating"><span>Рейтинг Кинопоиска:  </span> {movieData.rating? parseFloat((movieData.rating.kp).toFixed(1)) : 5}</p>
+                    <div className="movie__pageActors">
                    <span>В главных ролях:  </span> 
                      {movieData.persons && 
                     movieData.persons.slice(0, 4).map(person => 
@@ -68,8 +65,8 @@ export default function Movie(){
                     )
                 }
                 </div>
+                </div>
             </div>
-        </div>
         </div>
     )
 }
