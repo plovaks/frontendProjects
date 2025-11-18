@@ -9,6 +9,8 @@ export default function MovieList(){
     const [moviesData, setMoviesData] = useState([]);
     const [likedMovies, setLikedMovies] = useState({});
 
+    // состояния для фильтров
+    const [activeFilter, setActiveFilter] = useState('all');
 
     useEffect(() => {
         async function fetchMovies(){
@@ -58,9 +60,34 @@ export default function MovieList(){
         );
     };
 
+    const handleDeleteMovie = (movieId) =>{
+        setMoviesData(prev => prev.filter(movie => movie.id !== movieId))
+
+    };
+
+    const handleFilterChange = (filterType)=>{
+        setActiveFilter(filterType);
+    }
+
+
+    const filteredMovies = moviesData.filter(movie =>{
+        if(activeFilter === 'all') return true;
+        if(activeFilter ==='favorites')return likedMovies[movie.id];
+        return false;
+    })
     return (
+        <>
+        <div className="filters">
+            <button 
+                className={activeFilter === "favorites" ? "active" : ""}
+                onClick={() =>handleFilterChange('favorites')}>Избранное</button>
+            <button 
+                className={activeFilter === 'all' ? 'active' : ""}
+                onClick={()=>handleFilterChange('all')}>Все фильмы</button>
+        </div>
+        
         <div className="cards-wrapper">
-            {moviesData
+            {filteredMovies
                 .filter(movie => isValidMovie(movie)) 
                 .map(movie => (
                     <MovieCard 
@@ -72,9 +99,12 @@ export default function MovieList(){
                         movieId={movie.id}
                         isLiked={likedMovies[movie.id] || false}
                         onToggleLike={handleToggleLike}
+                        onDelete={handleDeleteMovie}
                     />
                 ))
             }
         </div>
+        </>
+        
     )
 }
