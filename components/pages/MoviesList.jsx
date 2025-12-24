@@ -1,5 +1,6 @@
 import MovieCard from "../MovieCard";
 import {useState, useEffect} from "react"
+import { Link } from "react-router-dom";
 
 const API_KEY = import.meta.env.VITE_API_KEY;
 const API_URL = import.meta.env.VITE_API_URL;
@@ -11,6 +12,8 @@ export default function MovieList(){
 
     // состояния для фильтров
     const [activeFilter, setActiveFilter] = useState('all');
+
+     
 
     useEffect(() => {
         async function fetchMovies(){
@@ -75,9 +78,12 @@ export default function MovieList(){
         if(activeFilter ==='favorites')return likedMovies[movie.id];
         return false;
     })
+
+
     return (
         <>
-        <div className="filters">
+        <div className="header__buttons">
+            <div className="filters">
             <button 
                 className={activeFilter === "favorites" ? "active" : ""}
                 onClick={() =>handleFilterChange('favorites')}>Избранное</button>
@@ -85,6 +91,11 @@ export default function MovieList(){
                 className={activeFilter === 'all' ? 'active' : ""}
                 onClick={()=>handleFilterChange('all')}>Все фильмы</button>
         </div>
+        <Link to="/create-movie">
+            <button className="create__movie">Создать карточку</button>
+        </Link>
+        </div>
+        
         
         <div className="cards-wrapper">
             {filteredMovies

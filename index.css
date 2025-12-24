@@ -116,7 +116,7 @@ body {
 .link, a{
   text-decoration: none;
   color:inherit;
-  display: contents;
+  /* display: contents; */
 }
 
 /* movie page */
@@ -173,16 +173,6 @@ body {
 
 }
 
-.movie__pageBackBtn{
-  display: block;
-  padding: 10px 20px;
-  background-color: #d8cfbc;
-  border-radius: 10px;
-  border:none;
-  text-decoration: none;
-  cursor:pointer;
- 
-}
 
 button{
   background-color:transparent;
@@ -196,6 +186,19 @@ button{
   cursor: pointer;
 }
 
+.movie__pageBackBtn{
+  display: block;
+  padding: 10px 20px;
+  
+  border-radius: 10px;
+  border:none;
+  text-decoration: none;
+  cursor:pointer;
+  background-color: #d8cfbc !important;
+  color: #242424 !important;
+ 
+}
+
 .filters{
   display: flex;
   gap:20px;
@@ -203,7 +206,52 @@ button{
 }
 
 /* выделение нажатой кнопки фильтрации */
-.active{
+.filters > button.active{
   background-color:#d8cfbc;
   color: #242424;
 }
+
+.header__buttons{
+  display: flex;
+  justify-content: space-between;
+}
+
+.createMoviePage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.form__createCard{
+  display: flex;
+  flex-direction: column;
+  min-width: 400px;
+  max-width: 500px;
+  margin-top: 50px;
+  padding: 20px 32px;
+  border:1px #d8cfbc solid;
+  border-radius: 10px;
+}
+
+form > input, select{
+  margin-bottom: 20px;
+  background-color: #d8cfbc;
+  padding: 10px 20px;
+  border-radius: 5px;
+  border:none;
+}
+
+form > label{
+  margin-bottom: 5px;
+}
+
+
+
+.createMovie__title{
+  color: #d8cfbc;
+  margin-top: 40px;
+  text-align: center;
+}
+
+
+
